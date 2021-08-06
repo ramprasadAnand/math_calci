@@ -1,0 +1,26 @@
+{
+  "name": "math_calci",
+  "version": "1.0.0",
+  "description": "Used for normal match operations",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "one"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramprasadAnand/math_calci.git"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-native": "^0.64.0"
+  },
+  "keywords": [
+    "math"
+  ],
+  "author": "Ramprasad A",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramprasadAnand/math_calci/issues"
+  },
+  "homepage": "https://github.com/ramprasadAnand/math_calci#readme"
+}
