@@ -11,8 +11,10 @@
     "url": "git+https://github.com/ramprasadAnand/math_calci.git"
   },
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-native": "^0.64.0"
+    //"react": "^17.0.1",
+    //"react-native": "^0.64.0"
+    "react": "16.8.6",
+    "react-native": "^0.60.5"
   },
   "keywords": [
     "math"
