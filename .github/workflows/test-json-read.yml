@@ -6,7 +6,7 @@ jobs:
   
   build:
     
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v3
@@ -18,3 +18,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Read JSON File
+        id: property
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+          path: 'version.json'
+          prop_path: 'deployType'
+
+      - run: echo ${{steps.property.outputs.prop}} 
