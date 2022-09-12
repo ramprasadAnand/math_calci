@@ -28,18 +28,16 @@ jobs:
 
       - run: echo ${{steps.property.outputs.prop}} 
       
-      - name: Check deployment type
-        env:
-          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
-        if: ('${{env.DEPLOYMENT_TYPE}}' == 'Standard')
+      - name: Check Standard Checkout deployment type
+        if: ${{steps.property.outputs.prop}}  == 'Standard'
         run: | 
           echo "Triggering standard cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
         
-      - name: Check deployment type
+      - name: Check Custom Checkout deployment type
         env:
           DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
-        if: false
+        if: ${{steps.property.outputs.prop}}  == 'Custom'
         run: | 
           echo "Triggering standard cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
