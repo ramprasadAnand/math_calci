@@ -27,3 +27,16 @@ jobs:
           prop_path: 'deployType'
 
       - run: echo ${{steps.property.outputs.prop}} 
+      
+      - name: Check deployment type
+        env:
+          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
+        if: DEPLOYMENT_TYPE == 'Standard'
+        run: echo "Triggering standard cehckout deployment"
+        
+      - name: Check deployment type
+        env:
+          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
+        if: DEPLOYMENT_TYPE == 'Custom'
+        run: echo "Triggering Custom cehckout deployment"
+        
