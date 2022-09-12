@@ -29,7 +29,7 @@ jobs:
       - run: echo ${{steps.property.outputs.prop}} 
       
       - name: Check Standard Checkout deployment type
-        if: ${{steps.property.outputs.prop}}  == 'Standard'
+        if: ${{steps.property.outputs.prop == 'Standard'}}
         run: | 
           echo "Triggering standard cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
@@ -37,8 +37,8 @@ jobs:
       - name: Check Custom Checkout deployment type
         env:
           DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
-        if: ${{steps.property.outputs.prop}}  == 'Custom'
+        if: ${{steps.property.outputs.prop == 'Custom'}}
         run: | 
-          echo "Triggering standard cehckout deployment"
+          echo "Triggering custom cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
         
