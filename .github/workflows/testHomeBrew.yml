@@ -1,0 +1,16 @@
+name: Brew Installation
+
+on: push
+
+jobs:
+  
+  install:
+    
+    runs-on: macos-latest
+     
+    steps:
+      
+      - uses: actions/checkout@v3
+      
+      - name: Install brew on Runner-GH
+        run: "Instaling brew"
