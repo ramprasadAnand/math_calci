@@ -16,3 +16,6 @@ jobs:
         run: | 
           echo Instaling brew
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          
+      - name: Print Installed Brew Version
+        run: brew --version
