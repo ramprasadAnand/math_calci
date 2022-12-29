@@ -38,7 +38,7 @@ jobs:
         id: double-conversion
         run: |
           cov=77.09890
-          brCov=$((cov * 100) | bc) 
+          brCov=$((cov * 100)) 
           echo "BRANCH_COVERAGE_DOUBLE=${brCov}" >> $GITHUB_OUTPUT
         
       - run: |
