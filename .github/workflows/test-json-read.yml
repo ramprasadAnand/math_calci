@@ -37,7 +37,7 @@ jobs:
       - name: Calcualte Math
         id: double-conversion
         run: |
-          brCov="$(echo  '0.492783773 \* 100' | bc)"
+          brCov="$(echo  '0.492783773 * 100' | bc)"
           echo "BRANCH_COVERAGE_DOUBLE=${brCov}" >> $GITHUB_OUTPUT
         
       - run: |
