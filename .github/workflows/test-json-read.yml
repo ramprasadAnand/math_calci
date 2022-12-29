@@ -33,7 +33,16 @@ jobs:
         run: | 
           echo "Triggering standard cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
+          
+      - name: Calcualte Math
+        id: double-conversion
+        run: |
+          brCov=0.492783773
+          echo "BRANCH_COVERAGE_DOUBLE=${brCov*100}" >> $GITHUB_OUTPUT
         
+      - run: |
+          echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
+      
       - name: Check Custom Checkout deployment type
         env:
           DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
