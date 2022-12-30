@@ -38,8 +38,8 @@ jobs:
       - name: Running Standard Checkout Unit Tests
         continue-on-error: true
         run: |
-          echo "result=$(exec ./.github/scripts/run-uts.sh)" >> $GITHUB_OUTPUT
-          echo ${{env.result}}
+          result=$(exec ./.github/scripts/run-uts.sh)
+          echo "Conversion Output ==== ${result}"
 
       - name: Calcualte Math
         id: double-conversion
