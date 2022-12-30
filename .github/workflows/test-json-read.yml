@@ -44,15 +44,6 @@ jobs:
         run: |
           echo "Hello World!!!"
 
-      - name: Extract the UTs data
-        id: ut-numbers
-        run: |
-
-          overallUt="939:	 Executed 97 tests, with 0 failures (0 unexpected) in 0.140 (0.160) seconds"
-          trimPrefix= exec overallUt  | cut -d " " -f 9-
-          trimSuffix=${{trimPrefix | cut -f1 -d"("}}
-          echo trimSuffix
-
       - run: |
           echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
 
