@@ -39,7 +39,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "result=$(exec ./.github/scripts/run-uts.sh)" >> $GITHUB_OUTPUT
-          echo ${{$result}}
+          echo ${{env.result}}
 
       - name: Calcualte Math
         id: double-conversion
