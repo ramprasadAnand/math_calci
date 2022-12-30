@@ -36,15 +36,17 @@ jobs:
         run: exec chmod +x ./.github/scripts/run-uts.sh
 
       - name: Running Standard Checkout Unit Tests
+        id: get-output-from-bash
         continue-on-error: true
         run: |
           result=$(exec ./.github/scripts/run-uts.sh)
           echo "Conversion Output ==== ${result}"
+          echo "TEST_RESULTS=${result}" >> $GITHUB_OUTPUT
 
       - name: Calcualte Math
         id: double-conversion
         run: |
-          echo "Hello World!!!"
+          echo "Result from bash is printed here ${{ steps.get-output-from-bash.outputs.TEST_RESULTS }}""
 
       - run: |
           echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
