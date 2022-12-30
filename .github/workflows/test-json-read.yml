@@ -3,11 +3,9 @@ name: CI
 on: push
 
 jobs:
-  
   build:
-    
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
 
@@ -18,46 +16,50 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          
+
       - name: Read JSON File
         id: property
         uses: notiz-dev/github-action-json-property@release
-        with: 
-          path: 'version.json'
-          prop_path: 'deployType'
+        with:
+          path: "version.json"
+          prop_path: "deployType"
 
-      - run: echo ${{steps.property.outputs.prop}} 
-      
+      - run: echo ${{steps.property.outputs.prop}}
+
       - name: Check Standard Checkout deployment type
         if: ${{steps.property.outputs.prop == 'Standard'}}
-        run: | 
+        run: |
           echo "Triggering standard cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
-          
+
+      - name: Set permission
+        run: exec chmod +x ./.github/scripts/run-uts.sh
+
+      - name: Running Standard Checkout Unit Tests
+        continue-on-error: true
+        run: exec ./.github/scripts/run-uts.sh
+
       - name: Calcualte Math
         id: double-conversion
         run: |
-          cov=77.09890
-          brCov=$(echo "scale=2; $cov*100" | bc)
-          echo "BRANCH_COVERAGE_DOUBLE=${brCov}" >> $GITHUB_OUTPUT
-          
+          echo "Hello World!!!"
+
       - name: Extract the UTs data
         id: ut-numbers
         run: |
-          
+
           overallUt="939:	 Executed 97 tests, with 0 failures (0 unexpected) in 0.140 (0.160) seconds"
           trimPrefix= exec overallUt  | cut -d " " -f 9-
           trimSuffix=${{trimPrefix | cut -f1 -d"("}}
           echo trimSuffix
-        
+
       - run: |
           echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
-      
+
       - name: Check Custom Checkout deployment type
         env:
-          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}} 
+          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}}
         if: ${{steps.property.outputs.prop == 'Custom'}}
-        run: | 
+        run: |
           echo "Triggering custom cehckout deployment"
           echo '${{ env.DEPLOYMENT_TYPE }}'
-        
