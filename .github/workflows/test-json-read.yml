@@ -46,7 +46,7 @@ jobs:
       - name: Calcualte Math
         id: double-conversion
         run: |
-          echo "Result from bash is printed here ${{ steps.get-output-from-bash.outputs.TEST_RESULTS }}""
+          echo "Result from bash is printed here ${{ steps.get-output-from-bash.outputs.TEST_RESULTS }}"
 
       - run: |
           echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
