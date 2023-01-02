@@ -39,7 +39,7 @@ jobs:
         id: get-output-from-bash
         continue-on-error: true
         run: |
-          result=$(exec ./.github/scripts/run-uts.sh)
+          result=$(exec ./.github/scripts/run-uts.sh ./log_results/xcodebuild.log)
           echo "Conversion Output ==== ${result}"
           echo "TEST_RESULTS=${result}" >> $GITHUB_OUTPUT
 
