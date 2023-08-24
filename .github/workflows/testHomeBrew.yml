@@ -26,4 +26,7 @@ jobs:
           cd TempDir2
           cd TempDir
           ls 
+          cd ..
+          cd ..
+          cwd
         
