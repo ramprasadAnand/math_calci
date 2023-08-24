@@ -26,5 +26,7 @@ jobs:
           cd TempDir 
           touch hello.json
           mkdir TempDir2
+          cp hello.json TempDir
           cp -r TempDir TempDir2
+          ls
         
