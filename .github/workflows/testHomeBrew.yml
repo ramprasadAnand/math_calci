@@ -19,3 +19,12 @@ jobs:
           
       - name: Print Installed Brew Version
         run: brew --version
+
+      - name: Test DIR creation
+        run: |
+          mkdir TempDir
+          cd TempDir 
+          touch hello.json
+          mkdir TempDir2
+          cp -r TempDir TempDir2
+        
