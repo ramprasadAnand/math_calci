@@ -24,5 +24,5 @@ jobs:
           mkdir TempDir2
           cp -r TempDir TempDir2
           cd TempDir2
-          ls TempDir2
+          ls 
         
