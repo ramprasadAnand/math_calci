@@ -11,22 +11,16 @@ jobs:
     steps:
       
       - uses: actions/checkout@v3
-      
-      - name: Install brew on Runner-GH
-        run: | 
-          echo Instaling brew
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          
-      - name: Print Installed Brew Version
-        run: brew --version
 
       - name: Test DIR creation
         run: |
           mkdir TempDir
           cd TempDir 
           touch hello.json
+          touch hello2.json
           mkdir TempDir2
           cp hello.json TempDir
+          cp hello2.json TempDir
           cp -r TempDir TempDir2
-          ls
+          ls TempDir2
         
