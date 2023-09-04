@@ -1,0 +1,39 @@
+name: Brew Installation
+
+on: push
+
+jobs:
+  
+  install:
+    
+    runs-on: macos-latest
+     
+    steps:
+      
+      - uses: actions/checkout@v3
+
+      - name: Test DIR creation
+        run: |
+          mkdir TempDir
+          cd TempDir 
+          touch hello.json
+          touch hello2.json
+          cp hello.json TempDir
+          cp hello2.json TempDir
+          cd ..
+          mkdir TempDir2
+          cp -r TempDir TempDir2
+          cd TempDir2
+          cd TempDir
+          ls
+          cd ..
+          pwd
+          
+      - name: Test Present Working Directory
+        run: |
+          pwd 
+          mkdir TempDir3
+          cd TempDir3
+          pwd
+       
+        

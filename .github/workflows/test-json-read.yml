@@ -1,0 +1,60 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Read JSON File
+        id: property
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "version.json"
+          prop_path: "deployType"
+
+      - run: echo ${{steps.property.outputs.prop}}
+
+      - name: Check Standard Checkout deployment type
+        if: ${{steps.property.outputs.prop == 'Standard'}}
+        run: |
+          echo "Triggering standard cehckout deployment"
+          echo '${{ env.DEPLOYMENT_TYPE }}'
+
+      - name: Set permission
+        run: exec chmod +x ./.github/scripts/run-uts.sh
+
+      - name: Running Standard Checkout Unit Tests
+        id: get-output-from-bash
+        continue-on-error: true
+        run: |
+          result=$(exec ./.github/scripts/run-uts.sh ./log_results/xcodebuild.log)
+          echo "Conversion Output ==== ${result}"
+          echo "TEST_RESULTS=${result}" >> $GITHUB_OUTPUT
+
+      - name: Calcualte Math
+        id: double-conversion
+        run: |
+          echo "Result from bash is printed here ${{ steps.get-output-from-bash.outputs.TEST_RESULTS }}"
+
+      - run: |
+          echo "Coverted value: ${{ steps.double-conversion.outputs.BRANCH_COVERAGE_DOUBLE }}"
+
+      - name: Check Custom Checkout deployment type
+        env:
+          DEPLOYMENT_TYPE: ${{steps.property.outputs.prop}}
+        if: ${{steps.property.outputs.prop == 'Custom'}}
+        run: |
+          echo "Triggering custom cehckout deployment"
+          echo '${{ env.DEPLOYMENT_TYPE }}'
